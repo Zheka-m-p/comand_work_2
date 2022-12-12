@@ -18,22 +18,19 @@ class Connector:
         Проверка на существование файла с данными и
         создание его при необходимости
         """
-        try:
-            with open(self.__data_file, 'r', encoding='UTF-8'):  # Если нельзя прочитать, то создаём новый файл на запись
+        try:  # Если нельзя прочитать, то создаём новый файл на запись c пустым списком
+            with open(self.__data_file, 'r', encoding='UTF-8'):
                 pass
         except FileNotFoundError:
-            with open(self.__data_file, 'w', encoding='UTF-8'):
-                pass
+            with open(self.__data_file, 'w', encoding='UTF-8') as file_write:
+                json.dump([], file_write, indent=4)
 
     def insert(self, data):
         """
         Запись данных в файл с сохранением структуры и исходных данных
         """
-        with open(self.__data_file, 'r', encoding='UTF-8') as file_read:
-            try:  # если файл пустой, то избегаем ошибки
-                res = json.load(file_read)
-            except json.decoder.JSONDecodeError:  # и создаём в res пустой список
-                res = []
+        with open(self.__data_file, 'r+', encoding='UTF-8') as file_read:
+            res = json.load(file_read)
         with open(self.__data_file, 'w', encoding='UTF-8') as file_write:
             res.append(data)
             json.dump(res, file_write, indent=4)
@@ -47,10 +44,7 @@ class Connector:
         и вернуть все строки, в которых цена 1000
         """
         with open(self.__data_file, 'r', encoding='UTF-8') as file_for_read:
-            try:  # если файл пустой, то избегаем ошибки
-                all_data = json.load(file_for_read)
-            except json.decoder.JSONDecodeError:  # и создаём в all_data пустой список
-                all_data = []
+            all_data = json.load(file_for_read)
             if len(query) == 0:
                 return list(all_data)
             else:
@@ -69,10 +63,7 @@ class Connector:
         как в методе select
         """
         with open(self.__data_file, 'r', encoding='UTF-8') as file_for_read:
-            try:  # если файл пустой, то избегаем ошибки
-                all_data = json.load(file_for_read)
-            except json.decoder.JSONDecodeError:  # и создаём в all_data пустой список
-                all_data = []
+            all_data = json.load(file_for_read)
         with open(self.__data_file, 'w', encoding='UTF-8') as file_for_write:
             if len(query) == 0:
                 # json.dump([], file_for_write, indent=4)  # удаляет все данные, если словарь пустой
