@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Яблоки",
+    "price": 100.00,
+    "count": 12,
+    "category": 1
+  },
+  {
+    "id": 2,
+    "title": "Груши",
+    "price": 150.00,
+    "count": 90,
+    "category": 1
+  },
+  {
+    "id": 3,
+    "title": "Апельсины",
+    "price": 250.00,
+    "count": 5,
+    "category": 1
+  },
+  {
+    "id": 4,
+    "title": "Арбузы",
+    "price": 175.00,
+    "count": 4,
+    "category": 1
+  },
+  {
+    "id": 5,
+    "title": "Морковь",
+    "price": 45.00,
+    "count": 15,
+    "category": 2
+  },
+  {
+    "id": 6,
+    "title": "Сельдерей",
+    "price": 1000.00,
+    "count": 6,
+    "category": 2
+  },
+  {
+    "id": 7,
+    "title": "Редис",
+    "price": 450.00,
+    "count": 9,
+    "category": 2
+  },
+  {
+    "id": 8,
+    "title": "Картофель",
+    "price": 150.00,
+    "count": 7,
+    "category": 2
+  }
+]
