@@ -1,4 +1,4 @@
-from connector2 import Connector
+from connector import Connector
 
 
 class Product:
@@ -121,24 +121,6 @@ class Shop:
         print()  # Просто чтобы не "слиплось"
 
 
-# if __name__ == '__main__':
-#     p1 = Product(1, 'апельсин', 34.5, 15, 1)
-#     p2 = Product(2, 'мандарин', 47.5, 26, 1)
-#     p3 = Product(2, 'банан', 25.3, 0, 1)
-#     assert bool(p3) is False  # товара р3 нет в наличии на складе
-#     assert len(p2) == 26  # товара p2 на складе 26 штук
-#     P = Category(1, 'фрукты', 'вкусные', [p1, p2, p3])
-#     assert bool(P) is True  # есть товары в данной категории
-#     assert len(P) == 2  # количество различных товаров, из данной категории, которые есть на складе в данный момент
-# if __name__ == '__main__':
-#     p1 = Product(1, 'апельсин', 34.5, 15, 1)
-#     p2 = Product(2, 'мандарин', 47.5, 26, 1)
-#     p3 = Product(2, 'банан', 25.3, 0, 1)
-#     P = Category(1, 'фрукты', 'вкусные')
-#     P.products.append(p1)
-#     P.products.append(p2)
-#     P.products.append(p3)
-#     print(P.products[1].title)
 if __name__ == '__main__':
     my_shop = Shop()
     my_shop.get_product()
