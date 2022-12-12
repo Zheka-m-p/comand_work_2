@@ -71,8 +71,8 @@ class Connector:
                 all_data = []
         with open(self.__data_file, 'w', encoding='UTF-8') as file_for_write:
             if len(query) == 0:
-                json.dump([], file_for_write, indent=4)
-                # json.dump(all_data, file_for_write, indent=4)  # или надо было вернуть все данные, если пустой словарь
+                # json.dump([], file_for_write, indent=4)
+                json.dump(all_data, file_for_write, indent=4)  # или надо было вернуть все данные, если пустой словарь - да!
             else:
                 res = []
                 key_sort, *other_keys = query.keys()
