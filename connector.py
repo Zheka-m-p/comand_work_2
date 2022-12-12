@@ -1,4 +1,3 @@
-# import  json
 import json
 
 
@@ -79,7 +78,9 @@ class Connector:
                 key_sort, *other_keys = query.keys()
                 value_sort, *other_values = query.values()
                 for dictionary in all_data:
-                    if key_sort not in dictionary or dictionary[key_sort] != value_sort:
+                    if key_sort in dictionary and dictionary[key_sort] != value_sort:
+                        res.append(dictionary)
+                    elif key_sort not in dictionary:
                         res.append(dictionary)
                 json.dump(res, file_for_write, indent=4)
 
@@ -90,10 +91,6 @@ if __name__ == '__main__':
     data_for_file = {'id': 1, 'title': 'tet'}
 
     df.insert(data_for_file)
-
-    # data_for_file = {'id': 2, 'title': 'fsfa'} #
-    #
-    # df.insert(data_for_file)
 
     data_from_file = df.select({'id': 1})
     assert data_from_file == [data_for_file]
