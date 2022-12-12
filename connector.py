@@ -18,8 +18,12 @@ class Connector:
         Проверка на существование файла с данными и
         создание его при необходимости
         """
-        with open(self.__data_file, 'w'):
-            pass
+        try:
+            with open(self.__data_file, 'r', encoding='UTF-8'):  # Если нельзя прочитать, то создаём новый файл на запись
+                pass
+        except FileNotFoundError:
+            with open(self.__data_file, 'w', encoding='UTF-8'):
+                pass
 
     def insert(self, data):
         """
@@ -71,8 +75,8 @@ class Connector:
                 all_data = []
         with open(self.__data_file, 'w', encoding='UTF-8') as file_for_write:
             if len(query) == 0:
-                # json.dump([], file_for_write, indent=4)
-                json.dump(all_data, file_for_write, indent=4)  # или надо было вернуть все данные, если пустой словарь - да!
+                # json.dump([], file_for_write, indent=4)  # удаляет все данные, если словарь пустой
+                json.dump(all_data, file_for_write, indent=4)  # оставляет все данные, если пустой словарь
             else:
                 res = []
                 key_sort, *other_keys = query.keys()
@@ -91,10 +95,9 @@ if __name__ == '__main__':
     data_for_file = {'id': 1, 'title': 'tet'}
 
     df.insert(data_for_file)
-
-    data_from_file = df.select({'id': 1})
+    data_from_file = df.select(dict())
     assert data_from_file == [data_for_file]
 
-    df.delete(dict())
+    df.delete({'title': 'tet'})
     data_from_file = df.select(dict())
     assert data_from_file == []
